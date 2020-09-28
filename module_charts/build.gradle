@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release' //必须放在'com.android.library'插件后
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+
+//添加
+publish {
+    userOrg = 'taoxinxing16'
+    groupId = 'com.finchina'
+    artifactId = 'echartlib'
+    publishVersion = '1.0.0'
+    desc = 'Oh hi, this is a nice description for a project, right?'
+    website = 'https://github.com/xing16/chartlib'
+}
+
+
+
+/***
+ *
+
+
+
+
+ gradlew clean build bintrayUpload -PbintrayUser=taoxinxing16 -PbintrayKey=9f12bdbe650b7fe69c9a82cee4bc1abea5c6435b -PdryRun=false
+
+
+
+
+
+ * **/
+
